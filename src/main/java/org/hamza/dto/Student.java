@@ -5,6 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * This class represents a student for the school management system.
+ * Each student has an id, a first name, a last name, an associated department
+ * and can register for up to 5 different courses.
+ *
+ * @author Hamza Khalid
+ */
 @EqualsAndHashCode
 @ToString
 @Getter
@@ -21,6 +28,13 @@ public class Student {
     private Course[] courses;
     private int courseNum;
 
+    /**
+     * Constructs a new student with a given first name, last name, department and id.
+     *
+     * @param fname The first name of the student.
+     * @param lname The last name of the student.
+     * @param department The department to which the student is associated with.
+     */
     public Student(String fname, String lname, Department department) {
         this.fname = fname;
         this.lname = lname;
@@ -29,6 +43,12 @@ public class Student {
         this.courses = new Course[MAX_STUDENT_COURSE_NUM];
         this.courseNum = 0;
     }
+
+    /**
+     * Registers a course for the student.
+     *
+     * @param course The course to be registered.
+     */
     public void registerCourse(Course course) {
         if (courseNum < MAX_STUDENT_COURSE_NUM) {
             courses[courseNum++] = course;
@@ -36,6 +56,12 @@ public class Student {
             System.out.println("Maximum number of courses reached for this student.");
         }
     }
+
+    /**
+     * Private method to get the full name of the student
+     *
+     * @return The full name of the student.
+     */
     private String fullName() {
         return fname + " " + lname;
     }
