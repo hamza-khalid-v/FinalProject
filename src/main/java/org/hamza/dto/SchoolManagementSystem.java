@@ -27,25 +27,22 @@ public class SchoolManagementSystem {
     private static final int MAX_COURSE_NUM = 30;
 
     private Department[] departments;
-    private Student[] students;
-    private Teacher[] teachers;
-    private Course[] courses;
+    private int departmentNum = 0;
 
-    private int departmentIndex;
-    private int studentIndex;
-    private int teacherIndex;
-    private int courseIndex;
+    private Student[] students;
+    private int studentNum = 0;
+
+    private Teacher[] teachers;
+    private int teacherNum = 0;
+
+    private Course[] courses;
+    private int courseNum = 0;
 
     public SchoolManagementSystem() {
         this.departments = new Department[MAX_DEPARTMENT_NUM];
         this.students = new Student[MAX_STUDENT_NUM];
         this.teachers = new Teacher[MAX_TEACHER_NUM];
         this.courses = new Course[MAX_COURSE_NUM];
-
-        this.departmentIndex = 0;
-        this.studentIndex = 0;
-        this.teacherIndex = 0;
-        this.courseIndex = 0;
     }
 
     /**
@@ -53,9 +50,9 @@ public class SchoolManagementSystem {
      *
      * @param departmentName The name of the new department.
      */
-    public void addDepartment(String departmentName) {
-        if (departmentIndex < MAX_DEPARTMENT_NUM) {
-            departments[departmentIndex++] = new Department(departmentName);
+    public void addDepartment(Department departmentName) {
+        if (departmentNum < MAX_DEPARTMENT_NUM) {
+            departments[departmentNum++] = departmentName;
         } else {
             System.out.println("Maximum department limit reached.");
         }
@@ -71,8 +68,8 @@ public class SchoolManagementSystem {
     public void addStudent(String fname, String lname, String departmentId) {
         Department department = findDepartment(departmentId);
         if (department != null) {
-            if (studentIndex < MAX_STUDENT_NUM) {
-                students[studentIndex++] = new Student(fname, lname, department);
+            if (studentNum < MAX_STUDENT_NUM) {
+                students[studentNum++] = new Student(fname, lname, department);
             } else {
                 System.out.println("Maximum student limit reached.");
             }
@@ -91,8 +88,8 @@ public class SchoolManagementSystem {
     public void addTeacher(String lname, String fname, String departmentId) {
         Department department = findDepartment(departmentId);
         if (department != null) {
-            if (teacherIndex < MAX_TEACHER_NUM) {
-                teachers[teacherIndex++] = new Teacher(lname, fname, department);
+            if (teacherNum < MAX_TEACHER_NUM) {
+                teachers[teacherNum++] = new Teacher(lname, fname, department);
             } else {
                 System.out.println("Maximum teacher limit reached.");
             }
@@ -111,8 +108,8 @@ public class SchoolManagementSystem {
     public void addCourse(String courseName, double credit, String departmentId) {
         Department department = findDepartment(departmentId);
         if (department != null) {
-            if (courseIndex < MAX_COURSE_NUM) {
-                courses[courseIndex++] = new Course(courseName, credit, department);
+            if (courseNum < MAX_COURSE_NUM) {
+                courses[courseNum++] = new Course(courseName, credit, department);
             } else {
                 System.out.println("Maximum course limit reached.");
             }

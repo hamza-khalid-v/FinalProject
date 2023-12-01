@@ -27,7 +27,7 @@ public class Teacher {
      *
      * @param lname The last name of the teacher.
      * @param fname The first name of the teacher.
-     * @param department
+     * @param department The department the teacher is assigned to.
      */
     public Teacher(String lname, String fname, Department department) {
         this.lname = lname;
