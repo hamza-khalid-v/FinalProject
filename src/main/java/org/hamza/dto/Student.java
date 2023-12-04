@@ -3,7 +3,8 @@ package org.hamza.dto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.util.Arrays;
 
 /**
  * This class represents a student for the school management system.
@@ -13,7 +14,6 @@ import lombok.ToString;
  * @author Hamza Khalid
  */
 @EqualsAndHashCode
-@ToString
 @Getter
 @Setter
 
@@ -49,7 +49,7 @@ public class Student {
      *
      * @param course The course to be registered.
      */
-    public void registerCourse(Course course) {
+    public void registerCourseToStudent(Course course) {
         if (courseNum < MAX_STUDENT_COURSE_NUM) {
             courses[courseNum++] = course;
         } else {
@@ -64,5 +64,23 @@ public class Student {
      */
     private String fullName() {
         return fname + " " + lname;
+    }
+
+    /**
+     * Returns a string representation of the student, the student's id,
+     * full name, associated department, and registered courses.
+     *
+     * @return the representation of the student string.
+     */
+    @Override
+    public String toString() {
+        return "Student{" +
+                "fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", id='" + id + '\'' +
+                ", department=" + department +
+                ", courses=" + Arrays.toString(courses) +
+                ", courseNum=" + courseNum +
+                '}';
     }
 }

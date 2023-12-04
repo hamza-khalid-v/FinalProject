@@ -3,7 +3,8 @@ package org.hamza.dto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.util.Arrays;
 
 /**
  * This class represents a course for the school management system.
@@ -13,12 +14,11 @@ import lombok.ToString;
  * @author Hamza Khalid
  */
 @EqualsAndHashCode
-@ToString
 @Getter
 @Setter
 
 public class Course {
-    private static final int MAX_STUDENT_NUM = 5;
+    private static final int MAX_STUDENT_TO_COURSE_NUM = 5;
     private static int nextId = 1;
 
     private double credit;
@@ -41,7 +41,7 @@ public class Course {
         this.courseName = courseName;
         this.credit = credit;
         this.department = department;
-        this.students = new Student[MAX_STUDENT_NUM];
+        this.students = new Student[MAX_STUDENT_TO_COURSE_NUM];
         this.studentNum = 0;
     }
 
@@ -59,11 +59,30 @@ public class Course {
      *
      * @param student The student to be registered for the course.
      */
-    public void registerStudent(Student student) {
-        if (studentNum < MAX_STUDENT_NUM) {
+    public void registerNumberOfStudentToCourse(Student student) {
+        if (studentNum < MAX_STUDENT_TO_COURSE_NUM) {
             students[studentNum++] = student;
         } else {
             System.out.println("Maximum number of students reached for this course.");
         }
+    }
+
+    /**
+     * Returns a string representation of the course, the course's id,
+     * name, credit value, assigned teacher, and registered students.
+     *
+     * @return string representation of course.
+     */
+    @Override
+    public String toString() {
+        return "Course{" +
+                "credit=" + credit +
+                ", id='" + id + '\'' +
+                ", students=" + Arrays.toString(students) +
+                ", department=" + department +
+                ", studentNum=" + studentNum +
+                ", teacher=" + teacher +
+                ", courseName='" + courseName + '\'' +
+                '}';
     }
 }

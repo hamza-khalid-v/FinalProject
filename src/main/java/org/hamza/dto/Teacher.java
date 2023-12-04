@@ -3,7 +3,6 @@ package org.hamza.dto;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 /**
  * This class represents a teacher for the school management system.
@@ -11,7 +10,6 @@ import lombok.ToString;
  * @author Hamza Khalid
  */
 @EqualsAndHashCode
-@ToString
 @Getter
 @Setter
 
@@ -34,5 +32,20 @@ public class Teacher {
         this.fname = fname;
         this.department = department;
         this.id = String.format("T%03d", nextId++);
+    }
+
+    /**
+     * Returns a string representation of the teacher, the teacher's id, full name, and assigned department.
+     *
+     * @return string representation of the teacher.
+     */
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "lname='" + lname + '\'' +
+                ", fname='" + fname + '\'' +
+                ", id='" + id + '\'' +
+                ", department=" + department +
+                '}';
     }
 }

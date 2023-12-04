@@ -25,6 +25,8 @@ public class SchoolManagementSystem {
     private static final int MAX_STUDENT_NUM = 200;
     private static final int MAX_TEACHER_NUM = 20;
     private static final int MAX_COURSE_NUM = 30;
+    private static final int MAX_STUDENT_COURSE_NUM = 5;
+    private static final int MAX_STUDENT_TO_COURSE_NUM = 5;
 
     private Department[] departments;
     private int departmentNum = 0;
@@ -245,12 +247,13 @@ public class SchoolManagementSystem {
      * @param studentId The id of the student to be registered for the course.
      * @param courseId The id of the course for which the student is registering.
      */
-    public void registerCourse(String studentId, String courseId) {
+    public void registerStudentToCourse(String studentId, String courseId) {
         Student student = findStudent(studentId);
         Course course = findCourse(courseId);
 
         if (student != null && course != null) {
-            student.registerCourse(course);
+            student.registerCourseToStudent(course);
+            course.registerNumberOfStudentToCourse(student);
         } else {
             System.out.println("Student or course not found.");
         }
