@@ -45,7 +45,7 @@ public class Teacher {
                 "lname='" + lname + '\'' +
                 ", fname='" + fname + '\'' +
                 ", id='" + id + '\'' +
-                ", department=" + department +
+                ", department=" + (department != null ? department.getDepartmentName() : "N/A") +
                 '}';
     }
 }
