@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Arrays;
-
 /**
  * Represents a School Management System that manages departments, students, teachers, and courses.
  * The system has a maximum number for departments, students, teachers, and courses.
@@ -57,9 +55,8 @@ public class SchoolManagementSystem {
     public void addDepartment(Department departmentName) {
         if (departmentNum < MAX_DEPARTMENT_NUM) {
             departments[departmentNum++] = departmentName;
-            System.out.println("Add department " + departmentName + " successfully");
         } else {
-            System.out.println("Max department reached, add a new department failed");
+            System.out.println("Maximum department limit reached.");
         }
     }
 
@@ -74,11 +71,9 @@ public class SchoolManagementSystem {
         Department department = findDepartment(departmentId);
         if (department != null) {
             if (studentNum < MAX_STUDENT_NUM) {
-                Student newStudent = new Student(fname, lname, department);
-                students[studentNum++] = newStudent;
-                System.out.println(newStudent + " added successfully.");
+                students[studentNum++] = new Student(fname, lname, department);
             } else {
-                System.out.println("Max student reached, add a new student failed");
+                System.out.println("Maximum student limit reached.");
             }
         } else {
             System.out.println("Department not found.");
@@ -96,11 +91,9 @@ public class SchoolManagementSystem {
         Department department = findDepartment(departmentId);
         if (department != null) {
             if (teacherNum < MAX_TEACHER_NUM) {
-                Teacher newTeacher = new Teacher(lname, fname, department);
-                teachers[teacherNum++] = newTeacher;
-                System.out.println(newTeacher + " added successfully.");
+                teachers[teacherNum++] = new Teacher(lname, fname, department);
             } else {
-                System.out.println("Max teacher reached, add a new teacher failed.");
+                System.out.println("Maximum teacher limit reached.");
             }
         } else {
             System.out.println("Department not found.");
@@ -118,9 +111,7 @@ public class SchoolManagementSystem {
         Department department = findDepartment(departmentId);
         if (department != null) {
             if (courseNum < MAX_COURSE_NUM) {
-                Course newCourse = new Course(courseName, credit, department);
-                courses[courseNum++] = newCourse;
-                System.out.println(newCourse + " added successfully.");
+                courses[courseNum++] = new Course(courseName, credit, department);
             } else {
                 System.out.println("Maximum course limit reached.");
             }
@@ -244,15 +235,9 @@ public class SchoolManagementSystem {
         Course course = findCourse(courseId);
 
         if (teacher != null && course != null) {
-            Teacher oldTeacher = course.getTeacher();
             course.assignTeacher(teacher);
-            System.out.println(course + " teacher info updated successfully. Previous Teacher: " + oldTeacher);
-        } else if (course == null) {
-            System.out.println("Cannot find any course match with courseId " + courseId +
-                    ". Modify teacher for course " + courseId + " failed.");
         } else {
-            System.out.println("Cannot find any teacher match with teacherId" + teacherId +
-                    ", modify teacher for course " + courseId + " failed.");
+            System.out.println("Teacher or course not found.");
         }
     }
 
@@ -266,24 +251,11 @@ public class SchoolManagementSystem {
         Student student = findStudent(studentId);
         Course course = findCourse(courseId);
 
-        if (student == null) {
-            System.out.println("Cannot find any student match with studentId " + studentId +
-                    ", register student for course " + courseId + " failed.");
-        } else if (student.getCourseNum() >= MAX_STUDENT_COURSE_NUM) {
-            System.out.println("Student " + studentId + " has already registered " + MAX_STUDENT_COURSE_NUM +
-                    " courses, register course for student " + studentId + " failed.");
-        } else if (course.getStudentNum() >= MAX_STUDENT_TO_COURSE_NUM) {
-            System.out.println("Course " + courseId + " has been fully registered, register course " +
-                    courseId + " for student " + studentId + " failed.");
-        } else if (Arrays.asList(student.getCourses()).contains(course)) {
-            System.out.println("Student " + studentId + " has already registered Course " +
-                    courseId + ", register course " + courseId + " for student " + studentId + " failed.");
-        } else {
+        if (student != null && course != null) {
             student.registerCourseToStudent(course);
             course.registerNumberOfStudentToCourse(student);
-            System.out.println("Student register course successfully");
-            System.out.println("Latest student: " + student);
-            System.out.println("Latest course info: " + course);
+        } else {
+            System.out.println("Student or course not found.");
         }
     }
 }

@@ -4,6 +4,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Arrays;
+
 /**
  * This class represents a course for the school management system.
  * Each course has an id, name, credit value, assigned teacher and a
@@ -73,24 +75,14 @@ public class Course {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Course{" +
+        return "Course{" +
                 "credit=" + credit +
                 ", id='" + id + '\'' +
-                ", department=" + department.getDepartmentName() +
+                ", students=" + Arrays.toString(students) +
+                ", department=" + department +
                 ", studentNum=" + studentNum +
-                ", teacher=" + (teacher != null ? teacher.getFname() + " " + teacher.getLname() : "N/A") +
+                ", teacher=" + teacher +
                 ", courseName='" + courseName + '\'' +
-                ", students=[");
-
-        for (int i = 0; i < studentNum; i++) {
-            sb.append(students[i].getId());
-            if (i < studentNum - 1) {
-                sb.append(", ");
-            }
-        }
-
-        sb.append("]}");
-
-        return sb.toString();
+                '}';
     }
 }
