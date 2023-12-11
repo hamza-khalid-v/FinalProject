@@ -4,8 +4,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Arrays;
-
 /**
  * This class represents a student for the school management system.
  * Each student has an id, a first name, a last name, an associated department
@@ -74,13 +72,23 @@ public class Student {
      */
     @Override
     public String toString() {
-        return "Student{" +
+        StringBuilder sb = new StringBuilder("Student{" +
                 "fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
                 ", id='" + id + '\'' +
-                ", department=" + department +
-                ", courses=" + Arrays.toString(courses) +
+                ", department=" + (department != null ? department.toString() : "N/A") +
                 ", courseNum=" + courseNum +
-                '}';
+                ", courses=[");
+
+        for (int i = 0; i < courseNum; i++) {
+            sb.append(courses[i].getId());
+            if (i < courseNum - 1) {
+                sb.append(", ");
+            }
+        }
+
+        sb.append("]}");
+
+        return sb.toString();
     }
 }

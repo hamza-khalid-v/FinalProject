@@ -9,48 +9,40 @@ import org.hamza.dto.SchoolManagementSystem;
 public class Main {
     public static void main(String[] args) {
         SchoolManagementSystem system = new SchoolManagementSystem();
-
-        // adding departments
+        // 1.
+        // a. adding departments
         system.addDepartment(new Department("CS"));
         system.addDepartment(new Department("Math"));
         system.addDepartment(new Department("Physics"));
-
-        // adding students
-        system.addStudent("Hamza", "Khalid", "D001");
-        system.addStudent("Aaron", "Zaltan", "D001");
-        system.addStudent("Anil", "Dimitri", "D002");
-
-        // adding teachers
-        system.addTeacher("Wang", "Yi", "D001");
-        system.addTeacher("Johnson", "Joel", "D002");
-
-        // adding courses
-        system.addCourse("Introduction to Programming", 3.0,"D001");
-        system.addCourse("Calculus", 4.0,"D002");
-
-        // printing
+        // 2.
+        // printing departments
         System.out.println("Departments: ");
         system.printDepartments();
-
+        // 3.
+        // a. adding students
+        system.addStudent("Hamza", "Khalid", "D001");
+        system.addStudent("Aaron", "Zoltan", "D001");
+        // 4.
+        // printing students
         System.out.println("\nStudents: ");
         system.printStudents();
-
+        // 5.
+        // a. adding teachers
+        system.addTeacher("Wang", "Yi", "D001");
+        // 6.
+        // printing teachers
         System.out.println("\nTeachers: ");
         system.printTeachers();
-
-        System.out.println("\nCourses: ");
-        system.printCourses();
-
+        // 7.
+        // a. adding courses
+        system.addCourse("Intro to Programming", 3.0,"D001");
+        // 8.
         // modifying teacher from a course
         system.modifyCourseTeacher("T001", "C001");
-
+        system.printCourses();
+        // 9.
         // registering a student to a course
         system.registerStudentToCourse("S001", "C001");
-        system.registerStudentToCourse("S002", "C001");
-        system.registerStudentToCourse("S003", "C002");
-
-        // printing modifications (does not work as intended)
-        System.out.println("\nModified Courses: ");
-        system.printCourses();
+        system.registerStudentToCourse("S001", "C001"); // bonus
     }
 }
