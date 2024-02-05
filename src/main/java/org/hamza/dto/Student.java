@@ -56,15 +56,6 @@ public class Student {
     }
 
     /**
-     * Private method to get the full name of the student
-     *
-     * @return The full name of the student.
-     */
-    private String fullName() {
-        return fname + " " + lname;
-    }
-
-    /**
      * Returns a string representation of the student, the student's id,
      * full name, associated department, and registered courses.
      *
